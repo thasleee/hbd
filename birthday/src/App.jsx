@@ -10,6 +10,8 @@ import backgroundMusic from "./assets/audio/September.mp3";
 import videoFile from "./assets/videos/Video.mp4";
 import surpriseImage from "./assets/images/hesitate.gif";
 import Please from "./assets/images/Please.gif";
+import Moon from "./assets/images/moon.jpg";
+import Star from "./assets/images/star.gif";
 import HeartBeat from "./assets/images/heartbeat-tom-and-jerry.gif";
 import { GiftBox } from "./GiftBox";
 
@@ -39,7 +41,11 @@ const App = () => {
   const [showGiftBox, setShowGiftBox] = useState(false);
   const [showMobileMessage, setShowMobileMessage] = useState(false);
   const [showTypingEffectMessage, setShowTypingEffectMessage] = useState(false);
+  const [showMoon, setShowMoon] = useState(false);
 
+  useEffect(() => {
+    setTimeout(setShowMoon(true), 4000);
+  }, []);
   const toggleLights = () => {
     setIsLightsOff(false);
 
@@ -69,7 +75,7 @@ const App = () => {
   };
 
   const handleVideoEnd = () => {
-    setTimeout(() => setShowSurpriseImage(true), 1000);
+    setTimeout(() => setShowSurpriseImage(true), 20000);
   };
 
   const handleClick = () => {
@@ -113,6 +119,38 @@ const App = () => {
     }, [text, speed]);
 
     return <p className="typing-effect">{displayedText}</p>;
+  };
+
+  const TypedEffect = ({ text, speed = 100 }) => {
+    const [displayedText, setDisplayedText] = useState("");
+
+    useEffect(() => {
+      let index = 0;
+      let exclamationCount = 0;
+      const interval = setInterval(() => {
+        if (index < text.length) {
+          const currentChar = text[index];
+
+          if (currentChar === "!") {
+            exclamationCount++;
+          }
+
+          if (exclamationCount > 3) {
+            clearInterval(interval);
+            return;
+          }
+
+          setDisplayedText((prev) => prev + currentChar);
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, speed);
+
+      return () => clearInterval(interval);
+    }, [text, speed]);
+
+    return <p className="typed-effect">{displayedText}</p>;
   };
 
   useEffect(() => {
@@ -231,12 +269,21 @@ const App = () => {
 
   const mobileMessageCard = (
     <div className="mobile-message-card">
-      <h3>Mobile Devices Are Not Supported</h3>
-      <p>
-        This app is not optimized for mobile devices. Please view it on a
-        desktop.
-      </p>
-      <button onClick={() => setShowMobileMessage(false)}>Close</button>
+      <img src={Moon} />
+      <div className="fireworks">
+        <img src={Star} className="firework" />
+        <img src={Star} className="firework" />
+        <img src={Star} className="firework" />
+        {showMoon && (
+          <div
+            className="ask-text"
+            style={{ marginTop: "217px", width: "214px" }}
+          >
+            The moon when another moon was born!
+          </div>
+        )}
+      </div>
+      <div></div>
     </div>
   );
 
@@ -280,32 +327,41 @@ const App = () => {
           </button>
         )}
       {isPlayingMusic && !showClickForSomethingButton && (
-        <div className="music-bar">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="bar"></div>
-          ))}
-        </div>
+        <section className="heart">
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+          <div className="heart-piece"></div>
+        </section>
       )}
       {showClickForSomethingButton && !showCard && !isCountdownVisible && (
         <button className="toggle-button" onClick={() => setShowCard(true)}>
-          Click for Something
+          Unlock Memory
         </button>
       )}
       {showCard && (
         <div className="card">
           <div className="card-content">
-            <h2 className="card-title">Memorable Picture</h2>
-            <p className="card-body">Did you Remember the image?</p>
+            <h2 className="card-title"></h2>
+            <p className="card-body">Do you Remember the image?</p>
             <button className="learn-button" onClick={handleLearnMoreClick}>
-              Click to See a Message for You
+              See Your Wish
             </button>
           </div>
         </div>
       )}
       {isCountdownVisible && countdown > 0 && (
-        <div className="countdown">
-          <span>{countdown}</span>
-        </div>
+        <>
+          <div className="rhombus">
+            <div className="circle1" />
+            <div className="circle2" />
+          </div>
+        </>
       )}
       {showBirthdayMessage && !showGiftBox && !showGreeting && !showVideo && (
         <div className="birthday-celebration">
@@ -327,8 +383,12 @@ const App = () => {
             />
           </div>
           <div className="birthday-message">
-            {Array.from("Happy    Birthday    Ayisha").map((letter, index) => (
-              <span key={index} className={`letter letter-${index}`}>
+            {Array.from("Happy    Birthday  Ayisha").map((letter, index) => (
+              <span
+                key={index}
+                className={`letter letter-${index}`}
+                style={{ "--index": index }}
+              >
                 {letter}
               </span>
             ))}
@@ -338,7 +398,7 @@ const App = () => {
 
       {showGreeting && !showVideo && (
         <button className="toggle-button" onClick={handleClickForGreeting}>
-          Click for Greeting
+          Unwrap Gift
         </button>
       )}
       {showGiftBox && !showVideo && (
@@ -349,7 +409,7 @@ const App = () => {
               className="surprise-toggle-button"
               onClick={handleSurpriseButtonClick}
             >
-              Click me for a surprise!
+              View Surprise!
             </button>
           )}
         </>
@@ -368,6 +428,18 @@ const App = () => {
             <source src={videoFile} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <div style={{ width: "50%", height: "50vh" }}>
+            <TypedEffect
+              className="video-message"
+              text="Hey,Naan Thaan, Epdi iruka? 
+
+Happiest birthday to the gal who makes my heart race in the best way possible! You’ve got my pulse at ninety, and sometimes, it even skips a beat (or two) because you're simply there. Wishing you a day as amazing as you are, filled with love and laughter. 
+
+To me, your birthday is the most special day of the year. Guess why? Cuz inniki oru naal thaan unkitta pesa mudiyuthu. Hmmmmmmm. Wish everyday could be Dec Third. Lol. 
+
+Once again, Happy Birthday gal! 💓"
+            />
+          </div>
         </div>
       )}
       {showSurpriseImage && !showFinalMessage && (
@@ -377,7 +449,7 @@ const App = () => {
             alt="Surprise"
             className="surprise-image"
           />
-          <p className="ask-text">Shall I ask you something?</p>
+          <p className="ask-text">A question?💓</p>
           <button
             className="toggle-button"
             onMouseEnter={() => setClickYes(true)}
@@ -410,7 +482,7 @@ const App = () => {
 
       {showTypingEffectMessage && (
         <div className="typing-message-container">
-          <TypingEffect text="Thank you for spending your precious time to go through this. I really hope you liked it! I'm eagerly awaiting the answer to my last question, and I trust it will be a positive one. Wishing you happiness always, and once again, a very happy birthday to you, Ayisha! May this year bring you endless joy and success!" />
+          <TypingEffect text="Thank you for gracing this space with your presence, it truly means the world to me. I truly hope it brought a smile to your face!. I’m eagerly waiting for a message from you, hoping it’ll be the one my heart desires. !Wishing you all the happiness in the world, Ayisha. And a very special, heartfelt happy birthday to you! May this year be filled with love, laughter, and dreams coming true. You deserve nothing less than endless joy and success, today and always❤️!" />
         </div>
       )}
     </div>
