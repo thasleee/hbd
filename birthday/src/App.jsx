@@ -299,7 +299,7 @@ const App = () => {
           onMouseEnter={() => setHoverTextVisible(true)}
           onMouseLeave={() => setHoverTextVisible(false)}
         >
-          {hoverTextVisible ? "Click to Turn On" : "TURN ON LIGHTS"}
+          {hoverTextVisible ? "Click to Turn On" : "LIGHTS 💗"}
         </button>
       )}
       <div className="bulb-container">
@@ -322,7 +322,7 @@ const App = () => {
         !showFinalMessage &&
         !isCountdownVisible && (
           <button className="toggle-button" onClick={playMusic}>
-            Play Music
+            Music 💗
           </button>
         )}
       {isPlayingMusic && !showClickForSomethingButton && (
@@ -340,16 +340,16 @@ const App = () => {
       )}
       {showClickForSomethingButton && !showCard && !isCountdownVisible && (
         <button className="toggle-button" onClick={() => setShowCard(true)}>
-          Unlock Memory
+          Fun?
         </button>
       )}
       {showCard && (
         <div className="card">
           <div className="card-content">
             <h2 className="card-title"></h2>
-            <p className="card-body">Do you Remember the image?</p>
+            <p className="card-body">Remember this one?</p>
             <button className="learn-button" onClick={handleLearnMoreClick}>
-              See Your Wish
+              Yes 💗
             </button>
           </div>
         </div>
@@ -397,7 +397,7 @@ const App = () => {
 
       {showGreeting && !showVideo && (
         <button className="toggle-button" onClick={handleClickForGreeting}>
-          Unwrap Gift
+          A Gift 🎁
         </button>
       )}
       {showGiftBox && !showVideo && (
@@ -408,7 +408,7 @@ const App = () => {
               className="surprise-toggle-button"
               onClick={handleSurpriseButtonClick}
             >
-              View Surprise!
+              View Surprise 🧧
             </button>
           )}
         </>
@@ -417,11 +417,12 @@ const App = () => {
       {showVideo && !showSurpriseImage && (
         <div className="video-container">
           <video
-            width="100%"
+            width="150%"
             height="auto"
-            controls
+            // controls
             autoPlay
-            muted
+            // muted
+            // loop
             onEnded={handleVideoEnd}
           >
             <source src={videoFile} type="video/mp4" />
@@ -432,9 +433,9 @@ const App = () => {
               className="video-message"
               text="Hey,Naan Thaan, Epdi iruka? 
 
-Happiest birthday to the gal who makes my heart race in the best way possible! You’ve got my pulse at ninety, and sometimes, it even skips a beat (or two) because you're simply there. Wishing you a day as amazing as you are, filled with love and laughter. 
+Happiest birthday to the gal who makes my heart race in the best way possible! Wishing you a day as amazing as you are, filled with love and laughter. 
 
-To me, your birthday is the most special day of the year. Guess why? Cuz inniki oru naal thaan unkitta pesa mudiyuthu. Hmmmmmmm. Wish everyday could be Dec Third. Lol. 
+To me, your birthday is the most special day of the year. Guess why? Cuz inniki oru naal thaan unkitta pesa mudiyuthu. Hmmmmmmm. Wish everyday could be Dec third. Lol. 
 
 Once again, Happy Birthday gal! 💓"
             />
@@ -455,7 +456,7 @@ Once again, Happy Birthday gal! 💓"
             onMouseLeave={() => setClickYes(false)}
             onClick={handleClick}
           >
-            Please Click Yes
+            Maybe!
           </button>
         </div>
       )}
@@ -481,7 +482,7 @@ Once again, Happy Birthday gal! 💓"
 
       {showTypingEffectMessage && (
         <div className="typing-message-container">
-          <TypingEffect text="Thank you for gracing this space with your presence, it truly means the world to me. I truly hope it brought a smile to your face!. I’m eagerly waiting for a message from you, hoping it’ll be the one my heart desires. !Wishing you all the happiness in the world, Ayisha. And a very special, heartfelt happy birthday to you! May this year be filled with love, laughter, and dreams coming true. You deserve nothing less than endless joy and success, today and always❤️!" />
+          <TypingEffect text="Thank you for gracing this space with your presence, it truly means the world to me. I truly hope it brought a smile to your face! I’m eagerly waiting for a message from you, hoping it’ll be the one my heart desires. Wishing you all the happiness in the world, Ayisha. And a very special, heartfelt happy birthday to you! May this year be filled with love, laughter, and dreams coming true. You deserve nothing less than endless joy and success, today and always ❤️" />
         </div>
       )}
     </div>
