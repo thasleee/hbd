@@ -557,6 +557,22 @@
   animation: fadeInBounce 2s ease-in-out, textColorChange 3s infinite alternate;
 }
 
+.asked-text {
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 0 !important;
+  width: 0;
+  margin-left: 24px;
+  animation: fadeInBounce 2s ease-in-out, textColorChange 3s infinite alternate;
+}
+
+.mobile-text{
+  font-family: "Protest Revolution", serif;
+  font-size:larger;
+}
 @keyframes fadeInBounce {
   0% {
     opacity: 0;
@@ -664,7 +680,9 @@
   width:100%;
   height:100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-around;
   
 }
 

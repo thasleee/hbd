@@ -269,20 +269,19 @@ const App = () => {
 
   const mobileMessageCard = (
     <div className="mobile-message-card">
-      <img src={Moon} />
-      <div className="fireworks">
-        <img src={Star} className="firework" />
-        <img src={Star} className="firework" />
-        <img src={Star} className="firework" />
-        {showMoon && (
+        <div style={{height:"85px"}}>
+        <img src={Moon} />
+        </div>
           <div
-            className="ask-text"
-            style={{ marginTop: "217px", width: "214px" }}
+          className="mobile-text"
+            style={{ width: "350px" }}
           >
             The moon when another moon was born!
           </div>
-        )}
-      </div>
+
+          <div className="asked-text" style={{marginLeft:"20px",width:"390px"}}>
+          Like the moon needs the night sky, this page seeks a bigger screen to shine for you
+          </div>
       <div></div>
     </div>
   );
